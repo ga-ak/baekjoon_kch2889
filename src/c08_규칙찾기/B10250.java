@@ -1,4 +1,4 @@
-package ch08_규칙찾기;
+package c08_규칙찾기;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
