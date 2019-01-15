@@ -11,37 +11,44 @@ public class B10250 {
     public static void main(String[] args) throws Exception {
         BufferedReader bfr = new BufferedReader(new InputStreamReader(System.in));
         int size = Integer.parseInt(bfr.readLine());
+        int[] resultArray = new int[size];
 
-        String[] resultArray = new String[size];
-
-        for (int i = 0; i < resultArray.length; i++) {
-            StringTokenizer st = new StringTokenizer(bfr.readLine());
+        for (int i = 0; i < size; i++) {
+            String tempString = bfr.readLine();
+            StringTokenizer st = new StringTokenizer(tempString);
             int h = Integer.parseInt(st.nextToken());
             int w = Integer.parseInt(st.nextToken());
             int n = Integer.parseInt(st.nextToken());
 
-            String floor = Integer.toString(n%h);
-            int roomNumber;
-            String stRoomNumber = null;
-            // n이 최고층 수 와 같지 않을 때는 호실에 +1 해줘야함
-            if (n % h != 0) {
-                roomNumber = n / h + 1;
+//            int h = 6;
+//            int w = 10;
+//            int n = i+1;
+//
+            String floor;
+            String roomNum;
+
+            if (n % h == 0) {
+                floor = Integer.toString(h);
+                if (n / h < 10) {
+                    roomNum = "0" + Integer.toString(n / h);
+                } else {
+                    roomNum = Integer.toString(n / h);
+                }
             } else {
-                roomNumber = n / h;
+                floor = Integer.toString(n % h);
+                if (n / h < 10-1) {
+                    roomNum = "0" + Integer.toString(n / h+1);
+                } else {
+                    roomNum = Integer.toString(n / h+1);
+                }
             }
 
-            // 호실이 10보다 작다면 층사이에 "0"을 넣어주어야 한다
-            if (roomNumber < 10) {
-                stRoomNumber = "0" + Integer.toString(roomNumber);
-            } else {
-                stRoomNumber = Integer.toString(roomNumber);
-            }
+            resultArray[i] = Integer.parseInt(floor+roomNum);
 
-            resultArray[i] = floor + stRoomNumber;
         }
 
-        for (String s : resultArray) {
-            System.out.println(s);
+        for (int i = 0; i < resultArray.length; i++) {
+            System.out.println(resultArray[i]);
         }
     }
 }
